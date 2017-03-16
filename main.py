@@ -22,7 +22,7 @@ def get_meal(url):
 	f = urllib2.urlopen(url)
 	soup = BeautifulSoup(f.read().decode('utf-8'), "lxml")
 	foods = soup.find_all('div', 'col-xs-10 text-left')
-	return '- ' + '\n- '.join(food.string.strip() for food in foods)
+	return '- ' + '\n- '.join(food.contents[0].strip() for food in foods)
 
 url = 'http://www.hors.se/restaurang/bistro-j/'
 meal = get_meal(url)
